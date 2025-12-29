@@ -1,0 +1,28 @@
+{
+  "name": "algo-language",
+  "displayName": "ALGO Language",
+  "description": "ALGO language support (keywords, symbols, indentation, TextMate grammar)",
+  "version": "0.0.1",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.50.0"
+  },
+  "categories": ["Languages"],
+  "contributes": {
+    "languages": [
+      {
+        "id": "algo",
+        "aliases": ["ALGO", "algo"],
+        "extensions": [".algo"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "algo",
+        "scopeName": "source.algo",
+        "path": "./syntaxes/algo.tmLanguage.json"
+      }
+    ]
+  }
+}
