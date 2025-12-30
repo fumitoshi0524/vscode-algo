@@ -4,7 +4,9 @@ A lightweight, local Visual Studio Code language support package for the `.algo`
 
 ## Features
 
-- Syntax highlighting for core keywords: `procedure`, `if`, `then`, `else`, `while`, `for`, `do`, `return`, `expand`.
+- Syntax highlighting for core keywords: `procedure`, `if`, `then`, `else`, `while`, `for`, `do`, `return`, `expand`, `record`, `type`, `end`.
+- Record definitions with fields and types.
+- Type aliases for arrays and other constructs.
 - Assignment arrows: `←` and `<-`.
 - Comparison operators: `=`, `≠` / `!=`.
 - Constants such as `NIL` and `∞`.
@@ -46,6 +48,13 @@ procedure Search(head, def):
     while p ≠ null and p.elem ≠ def:
         p <- p.next
     return p
+
+record Node:
+    data: any
+    parent: int     // 0 for root
+end
+
+type ParentArray = array[1..n] of Node
 ```
 
 ## Extending the grammar and snippets
