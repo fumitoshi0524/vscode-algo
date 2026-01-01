@@ -12,6 +12,8 @@
     { "include": "#arrays" },
     { "include": "#record" },
     { "include": "#type" },
+    { "include": "#semaphoreDecl" },
+    { "include": "#semaphoreOps" },
     { "include": "#identifiers" }
   ],
   "repository": {
@@ -34,7 +36,7 @@
     },
     "keywords": {
       "patterns": [
-        { "name": "keyword.control.algo", "match": "\\b(?:procedure|if|then|else|while|for|do|return|expand|record|type|end)\\b" }
+        { "name": "keyword.control.algo", "match": "\\b(?:procedure|if|then|else|while|for|do|return|expand|record|type|end|begin|create|process)\\b" }
       ]
     },
     "constants": {
@@ -50,7 +52,7 @@
     },
     "assignment": {
       "patterns": [
-        { "name": "keyword.operator.assignment.algo", "match": "\\u2190|<-" }
+        { "name": "keyword.operator.assignment.algo", "match": "\\u2190|<-|:=" }
       ]
     },
     "arrays": {
@@ -88,6 +90,37 @@
         "1": { "name": "entity.name.type.algo" },
         "2": { "name": "meta.type.algo" }
       }
+    },
+    "semaphoreDecl": {
+      "patterns": [
+        {
+          "name": "meta.semaphore.declaration.algo",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*:\\s*Semaphore\\s*(?:\\(:=\\s*(\\d+)\\s*\\)|=\\s*\\(:=\\s*(\\d+)\\s*\\))?",
+          "captures": {
+            "1": { "name": "variable.other.declaration.algo" },
+            "2": { "name": "constant.numeric.integer.algo" },
+            "3": { "name": "constant.numeric.integer.algo" }
+          }
+        }
+      ]
+    },
+    "semaphoreOps": {
+      "patterns": [
+        {
+          "name": "keyword.other.semaphore.algo",
+          "match": "\\bP\\s*\\(\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*\\)",
+          "captures": {
+            "1": { "name": "variable.other.algo" }
+          }
+        },
+        {
+          "name": "keyword.other.semaphore.algo",
+          "match": "\\bV\\s*\\(\\s*([A-Za-z_][A-Za-z0-9_]*)\\s*\\)",
+          "captures": {
+            "1": { "name": "variable.other.algo" }
+          }
+        }
+      ]
     }
   }
 }

@@ -57,6 +57,57 @@ end
 type ParentArray = array[1..n] of Node
 ```
 
+Additional semaphore and driver/conductor example:
+
+```algo
+empty1:Semaphore(:=1)
+full1:Semaphore(:=0)
+empty2:Semaphore(:=1)
+full2:Semaphore(:=0)
+
+procedure PA():
+    while true do
+        P(empty1)
+        // read
+        V(full1)
+procedure PB():
+    while true do
+        P(full1)
+        P(empty2)
+        // copy
+        V(empty1)
+        V(full2)
+
+procedure PC():
+    while true do
+        P(full2)
+        // print
+        V(empty2)
+
+stop:Semaphore = (:=1)
+close:Semaphore = (:=0)
+
+procedure Driver():
+    while true do
+        P(close)
+        drive
+        V(stop)
+end
+procedure Conductor():
+    while true do
+        P(stop)
+        open_doors
+        close_doors
+        V(close)
+        sell_tickets
+end
+
+begin
+    create process Driver()
+    create process Conductor()
+end
+```
+
 ## Extending the grammar and snippets
 
 - Edit `syntaxes/algo.tmLanguage.json` to add or refine token patterns.
